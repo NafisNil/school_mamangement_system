@@ -5,7 +5,16 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
+        @if (Auth::user()->user_type == 1)
+        <a href="{{ route('admin.dashboard') }}" class="nav-link">Home</a>
+        @elseif(Auth::user()->user_type == 2)
+        <a href="{{ route('teacher.dashboard') }}" class="nav-link">Home</a>
+        @elseif(Auth::user()->user_type == 3)
+        <a href="{{ route('student.dashboard') }}" class="nav-link">Home</a>
+        @elseif(Auth::user()->user_type == 4)
+        <a href="{{ route('parent.dashboard') }}" class="nav-link">Home</a>
+        @endif
+      
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -20,19 +29,7 @@
           <i class="fas fa-search"></i>
         </a>
         <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+
         </div>
       </li>
 

@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_deleted'
     ];
 
     /**
@@ -44,5 +45,22 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    static public function getEmailSingle($email){
+        return self::where('email', $email)->first();
+    }
+
+    static public function getTokenSingle($token){
+        return self::where('remember_token', $token)->first();
+    }
+
+    static public function getAdmin(){
+        return self::where('user_type', 1)->where('is_deleted', 0)->orderBy('id','desc')->paginate(10);
+    }
+
+
+    static public function getSingle($id){
+        return self::find($id);
     }
 }

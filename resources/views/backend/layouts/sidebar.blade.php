@@ -44,21 +44,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <form method="POST" action="{{ route('logout') }}">
-                  @csrf
-                <a href="{{route('logout')  }}" class="nav-link"  onclick="event.preventDefault();
-                                    this.closest('form').submit();">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Logout</p>
-                </a>
-              </form>
+
               </li>
 
             </ul>
           </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item menu-is-opening menu-open">
+            <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Content
@@ -70,76 +63,85 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-               <li class="nav-item">
+
+              @if (Auth::user()->user_type == 1)
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="{{ route('admin.dashboard') }}" class="nav-link {{$route == 'admin.dashboard'?'active':''}}" >
+                  <i class="far fa-user nav-icon"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li> 
+              <li class="nav-item menu-is-opening menu-open">
                 <a href="{{ route('admin.list') }}" class="nav-link {{$route == 'admin.list'?'active':''}}" >
                   <i class="far fa-user nav-icon"></i>
                   <p>Admin</p>
                 </a>
               </li> 
-  
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Charts
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../charts/chartjs.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
+
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="{{ route('class.list') }}" class="nav-link {{$route == 'class.list'?'active':''}}" >
+                  <i class="far fa-user nav-icon"></i>
+                  <p>Class</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="../charts/flot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
+              </li> 
+
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="{{ route('subject.list') }}" class="nav-link {{$route == 'subject.list'?'active':''}}" >
+                  <i class="far fa-user nav-icon"></i>
+                  <p>Subject</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="../charts/inline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inline</p>
+              </li> 
+
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="{{ route('assign_subject.list') }}" class="nav-link {{$route == 'assign_subject.list'?'active':''}}" >
+                  <i class="far fa-user nav-icon"></i>
+                  <p>Assign Subject</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="../charts/uplot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>uPlot</p>
+              </li> 
+
+
+              
+              @elseif(Auth::user()->user_type == 2)
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="{{ route('teacher.dashboard') }}" class="nav-link {{$route == 'teacher.dashboard'?'active':''}}" >
+                  <i class="far fa-user nav-icon"></i>
+                  <p>Dashboard</p>
                 </a>
-              </li>
+              </li> 
+              @elseif(Auth::user()->user_type == 3)
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="{{ route('student.dashboard') }}" class="nav-link {{$route == 'student.dashboard'?'active':''}}" >
+                  <i class="far fa-user nav-icon"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li> 
+              @elseif(Auth::user()->user_type == 4)
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="{{ route('parent.dashboard') }}" class="nav-link {{$route == 'parent.dashboard'?'active':''}}" >
+                  <i class="far fa-user nav-icon"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li> 
+              @endif
+
+              
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="{{ route('logout.user') }}" class="nav-link" >
+                  <i class="far fa-user nav-icon"></i>
+                  <p>Logout</p>
+                </a>
+              </li> 
             </ul>
           </li>
 
           <li class="nav-header">EXAMPLES</li>
  
           <li class="nav-header">MISCELLANEOUS</li>
-          <li class="nav-item">
-            <a href="../../iframe.html" class="nav-link">
-              <i class="nav-icon fas fa-ellipsis-h"></i>
-              <p>Tabbed IFrame Plugin</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>Documentation</p>
-            </a>
-          </li>
+
           <li class="nav-header">MULTI LEVEL EXAMPLE</li>
 
           <li class="nav-header">LABELS</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-danger"></i>
-              <p class="text">Important</p>
-            </a>
-          </li>
- 
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
